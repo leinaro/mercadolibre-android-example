@@ -2,8 +2,8 @@ package com.leinaro.mercadolibre_android_example.domain.di
 
 import com.leinaro.mercadolibre_android_example.domain.repository.CategoryRepository
 import com.leinaro.mercadolibre_android_example.domain.repository.Repository
-import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoryDomainInteractor
-import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoryInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoriesDomainInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoriesInteractor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -20,6 +20,6 @@ abstract class DomainModule {
 
     @Singleton
     @Binds
-    abstract fun bindGetCategoryInteractor(interactor: GetCategoryDomainInteractor): GetCategoryInteractor
+    abstract fun bindGetCategoryInteractor(interactor: GetCategoriesDomainInteractor): GetCategoriesInteractor
 
 }

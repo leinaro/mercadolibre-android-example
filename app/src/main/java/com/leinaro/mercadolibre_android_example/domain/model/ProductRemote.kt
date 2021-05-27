@@ -1,6 +1,10 @@
 package com.leinaro.mercadolibre_android_example.domain.model
 
-data class Product(
+data class SearchQueryResponse(
+    val results: List<ProductRemote>,
+)
+
+data class ProductRemote(
     val id: String,
     val title: String,
     val price: Number,

@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinaro.mercadolibre_android_example.databinding.FragmentProductListBinding
-import com.leinaro.mercadolibre_android_example.dummy.DummyContent
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -50,7 +49,7 @@ class ProductFragment : Fragment() {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            adapter = ProductRecyclerViewAdapter(DummyContent.ITEMS)
+            adapter = ProductRecyclerViewAdapter(listOf())
         }
 
         return view

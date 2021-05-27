@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/productFragment">
+    app:startDestination="@id/categoryFragment">
 
     <fragment
         android:id="@+id/productFragment"
@@ -19,4 +19,16 @@
         android:name="com.leinaro.mercadolibre_android_example.presentation.ProductDetailsFragment"
         android:label="product_details_fragment"
         tools:layout="@layout/product_details_fragment" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.leinaro.mercadolibre_android_example.presentation.category.CategoryFragment"
+        android:label="fragment_category_list"
+        tools:layout="@layout/fragment_category_list" >
+        <action
+            android:id="@+id/action_categoryFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_productFragment"
+            app:destination="@id/productFragment" />
+    </fragment>
 </navigation>
