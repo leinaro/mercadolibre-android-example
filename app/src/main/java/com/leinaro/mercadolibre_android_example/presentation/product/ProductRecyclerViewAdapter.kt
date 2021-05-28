@@ -16,20 +16,27 @@ import com.leinaro.mercadolibre_android_example.presentation.model.Product
  */
 class ProductRecyclerViewAdapter(
     private val values: List<Product>,
-) : RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder>() {
+    private val large: Boolean = true,
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_product, parent, false)
+        val view = if (large) {
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.fragment_product_large, parent, false)
+        } else {
+            LayoutInflater.from(parent.context).inflate(R.layout.fragment_product, parent, false)
+        }
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = values[position]
-        holder.name.text = item.name
-        holder.price.text = item.price
-        holder.thumbnail.contentDescription = item.name
-        Glide.with(holder.thumbnail.context).load(item.image).into(holder.thumbnail)
+        if (holder is ViewHolder) {
+            holder.name.text = item.name
+            holder.price.text = item.price
+            holder.thumbnail.contentDescription = item.name
+            Glide.with(holder.thumbnail.context).load(item.image).into(holder.thumbnail)
+        }
     }
 
     override fun getItemCount(): Int = values.size

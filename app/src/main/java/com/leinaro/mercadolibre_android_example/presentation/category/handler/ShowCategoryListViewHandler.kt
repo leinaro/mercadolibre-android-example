@@ -1,11 +1,11 @@
 package com.leinaro.mercadolibre_android_example.presentation.category.handler
 
-import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinaro.mercadolibre_android_example.presentation.category.*
-import com.leinaro.mercadolibre_android_example.presentation.commons.BaseViewModel
-import com.leinaro.mercadolibre_android_example.presentation.commons.ViewHandler
+import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
+import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 
 object ShowCategoryListViewHandler :
@@ -19,11 +19,18 @@ object ShowCategoryListViewHandler :
         }
     }
 
-    private fun showCategoryList(categoryFragment: CategoryFragment, categories: List<Category>) {
+    private fun showCategoryList(
+        categoryFragment: CategoryFragment,
+        categories: List<Category>,
+    ) {
         val listener by lazy {
             object : OnCategoryClickListener {
                 override fun onShowMoreClick(categoryId: String) {
-                    Log.e("iarl", "categoryId")
+                    val navController = categoryFragment.findNavController()
+                    val action = CategoryFragmentDirections.actionCategoryFragmentToProductFragment(
+                        categoryId
+                    )
+                    navController.navigate(action)
                 }
             }
         }

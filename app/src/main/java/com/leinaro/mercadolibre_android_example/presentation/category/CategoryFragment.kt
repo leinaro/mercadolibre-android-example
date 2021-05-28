@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.leinaro.mercadolibre_android_example.databinding.FragmentCategoryListBinding
-import com.leinaro.mercadolibre_android_example.presentation.commons.setObserver
+import com.leinaro.mercadolibre_android_example.presentation.common.setObserver
 import dagger.hilt.android.AndroidEntryPoint
+import com.leinaro.mercadolibre_android_example.presentation.model.Product
+import com.leinaro.mercadolibre_android_example.presentation.model.Category
 
 /**
- * A fragment representing a list of Categories with products.
+ * A fragment representing a list of [Category] with [Product].
  */
 @AndroidEntryPoint
 class CategoryFragment : Fragment() {

@@ -3,13 +3,11 @@ package com.leinaro.mercadolibre_android_example.presentation.category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
-import androidx.core.text.inSpans
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leinaro.mercadolibre_android_example.R
-import com.leinaro.mercadolibre_android_example.presentation.common.PressableSpan
-import com.leinaro.mercadolibre_android_example.presentation.commons.setPressableLinkSpannedString
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import com.leinaro.mercadolibre_android_example.presentation.product.ProductRecyclerViewAdapter
@@ -41,15 +39,13 @@ class CategoryRecyclerViewAdapter(
         }
         with(holder.productList) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ProductRecyclerViewAdapter(item.products)
+            adapter = ProductRecyclerViewAdapter(item.products, false)
+            visibility = View.VISIBLE
         }
-        holder.showMore.setPressableLinkSpannedString {
-            inSpans(PressableSpan() {
-                listener?.onShowMoreClick(item.id)
-            }) {
-                append("Ver más")
-            }
+        holder.showMore.setOnClickListener {
+            listener?.onShowMoreClick(item.id)
         }
+
     }
 
     override fun getItemCount(): Int = values.size
@@ -57,7 +53,7 @@ class CategoryRecyclerViewAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val contentView: TextView = view.findViewById(R.id.category_name)
         val productList: RecyclerView = view.findViewById(R.id.product_list)
-        val showMore: TextView = view.findViewById(R.id.show_more)
+        val showMore: Button = view.findViewById(R.id.show_more)
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"

@@ -1,17 +1,21 @@
-package com.leinaro.mercadolibre_android_example.presentation.commons
+package com.leinaro.mercadolibre_android_example.presentation.common
 
+import android.graphics.Color
 import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.core.text.buildSpannedString
 import androidx.core.text.getSpans
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.leinaro.mercadolibre_android_example.R
-import com.leinaro.mercadolibre_android_example.presentation.common.PressableSpan
 
 
 fun <T> Fragment.setObserver(viewModel: BaseViewModel<T>) {
     viewModel.getViewData().observe(this, Observer {
+        handleViewData(it, viewModel)
+    })
+    viewModel.getErrorViewData().observe(this, Observer {
         handleViewData(it, viewModel)
     })
 }
@@ -27,8 +31,9 @@ fun <T, C> Fragment.handleViewData(viewDataState: ViewDataState<T>, viewModel: C
 }
 
 inline fun TextView.setPressableLinkSpannedString(builderAction: SpannableStringBuilder.() -> Unit) {
-    //highlightColor = Color.TRANSPARENT
-    //movementMethod = PressableLin
+    highlightColor = Color.TRANSPARENT
+    movementMethod = LinkMovementMethod()//PressableLinkMovementMethod
+
     val spannedString = buildSpannedString(builderAction)
     text = spannedString
 

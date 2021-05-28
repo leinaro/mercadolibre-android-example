@@ -1,6 +1,6 @@
 package com.leinaro.mercadolibre_android_example.domain.model
 
-data class Category(
+data class CategoryRemote(
     val id: String,
     val name: String,
 )

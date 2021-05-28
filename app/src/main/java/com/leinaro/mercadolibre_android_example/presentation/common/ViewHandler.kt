@@ -1,4 +1,4 @@
-package com.leinaro.mercadolibre_android_example.presentation.commons
+package com.leinaro.mercadolibre_android_example.presentation.common
 
 typealias ViewDataState<T> = Pair<T, ViewHandler<out T, out BaseViewModel<T>>>
 

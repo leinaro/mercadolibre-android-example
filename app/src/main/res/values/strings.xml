@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mercadolibre</string>
+    <string name="ok">OK</string>
+    <string name="default_error_message">Algo ha pasado! Por favor verifica tu conexión a Internet y vuelve a intentarlo.</string>
 </resources>

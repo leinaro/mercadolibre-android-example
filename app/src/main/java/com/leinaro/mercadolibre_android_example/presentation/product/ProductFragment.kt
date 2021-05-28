@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.navArgs
 import com.leinaro.mercadolibre_android_example.databinding.FragmentProductListBinding
+import com.leinaro.mercadolibre_android_example.presentation.common.setObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -18,10 +18,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProductFragment : Fragment() {
 
     private var _binding: FragmentProductListBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     private val viewModel: ProductViewModel by viewModels()
 
+    private val args: ProductFragmentArgs by navArgs()
 
     private var columnCount = 1
 
@@ -32,7 +33,7 @@ class ProductFragment : Fragment() {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
 
-        viewModel.getCategories()
+        this.setObserver(viewModel)
     }
 
     override fun onCreateView(
@@ -43,15 +44,7 @@ class ProductFragment : Fragment() {
         _binding = FragmentProductListBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Set the adapter
-        with(view) {
-            layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(context)
-                else -> GridLayoutManager(context, columnCount)
-            }
-            adapter = ProductRecyclerViewAdapter(listOf())
-        }
-
+        viewModel.getProductsByCategory(args.categoryId)
         return view
     }
 
