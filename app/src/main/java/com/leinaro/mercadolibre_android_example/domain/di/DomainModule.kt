@@ -1,14 +1,17 @@
 package com.leinaro.mercadolibre_android_example.domain.di
 
+import com.leinaro.mercadolibre_android_example.datasource.model.*
 import com.leinaro.mercadolibre_android_example.domain.common.Mapper
-import com.leinaro.mercadolibre_android_example.domain.mapper.CategoryDataMapper
-import com.leinaro.mercadolibre_android_example.domain.mapper.ProductDataMapper
-import com.leinaro.mercadolibre_android_example.domain.model.CategoryRemote
-import com.leinaro.mercadolibre_android_example.domain.model.ProductRemote
+import com.leinaro.mercadolibre_android_example.domain.mapper.*
 import com.leinaro.mercadolibre_android_example.domain.repository.CategoryRepository
+import com.leinaro.mercadolibre_android_example.domain.repository.ProductRepository
 import com.leinaro.mercadolibre_android_example.domain.repository.Repository
-import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoriesDomainInteractor
-import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoriesInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_all_categories.GetCategoriesDomainInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_all_categories.GetCategoriesInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoryDomainInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_category.GetCategoryInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_product.GetProductDomainInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_product.GetProductInteractor
 import com.leinaro.mercadolibre_android_example.domain.usecase.get_product_by_category.GetProductByCategoryDomainInteractor
 import com.leinaro.mercadolibre_android_example.domain.usecase.get_product_by_category.GetProductByCategoryInteractor
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
@@ -25,22 +28,60 @@ abstract class DomainModule {
 
     @Singleton
     @Binds
-    abstract fun bindCategoryRepository(repository: Repository): CategoryRepository
+    abstract fun bindProductRepository(repository: Repository): ProductRepository
 
     @Singleton
     @Binds
-    abstract fun bindGetCategoryInteractor(interactor: GetCategoriesDomainInteractor): GetCategoriesInteractor
+    abstract fun bindCategoryRepository(repository: Repository): CategoryRepository
+
+    // region Category Interactors
+    @Singleton
+    @Binds
+    abstract fun bindGetCategoryInteractor(interactor: GetCategoryDomainInteractor): GetCategoryInteractor
+
+    @Singleton
+    @Binds
+    abstract fun bindGetCategoriesInteractor(interactor: GetCategoriesDomainInteractor): GetCategoriesInteractor
+    // endregion
+
+    // region Product Interactors
+    @Singleton
+    @Binds
+    abstract fun bindGetProductInteractor(interactor: GetProductDomainInteractor): GetProductInteractor
 
     @Singleton
     @Binds
     abstract fun bindGetProductByCategoryInteractor(interactor: GetProductByCategoryDomainInteractor): GetProductByCategoryInteractor
+    // endregion
 
     @Singleton
     @Binds
-    abstract fun bindProductDataMapper(productDataMapper: ProductDataMapper): Mapper<ProductRemote, Product>
+    abstract fun bindProductRemoteMapper(productRemoteMapper: ProductRemoteMapper): Mapper<ProductRemote, ProductLocal>
 
     @Singleton
     @Binds
-    abstract fun bindCategoryDataMapper(categoryDataMapper: CategoryDataMapper): Mapper<CategoryRemote, Category>
+    abstract fun bindProductLocalMapper(productLocalMapper: ProductLocalMapper): Mapper<ProductLocal, Product>
+
+    // region Category Mappers
+    @Singleton
+    @Binds
+    abstract fun bindCategoryRemoteMapper(categoryRemoteMapper: CategoryRemoteMapper): Mapper<CategoryRemote, CategoryLocal>
+
+    @Singleton
+    @Binds
+    abstract fun bindCategoryLocalMapper(categoryLocalMapper: CategoryLocalMapper): Mapper<CategoryLocal, Category>
+
+    @Singleton
+    @Binds
+    abstract fun bindCategoryWithProductsMapper(categoryLocalMapper: CategoryWithProductsMapper): Mapper<CategoryWithProducts, Category>
+
+    @Singleton
+    @Binds
+    abstract fun bindProductWithPicturesMapper(productWithPicturesMapper: ProductWithPicturesMapper): Mapper<ProductWithPictures, Product>
+    // endregion
+
+    @Singleton
+    @Binds
+    abstract fun bindPicturesMapper(pictureRemoteMapper: PictureRemoteMapper): Mapper<PicturesRemote, PictureLocal>
 
 }

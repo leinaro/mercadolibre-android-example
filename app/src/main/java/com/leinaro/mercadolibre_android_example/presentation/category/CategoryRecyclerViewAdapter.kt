@@ -5,16 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leinaro.mercadolibre_android_example.R
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
+import com.leinaro.mercadolibre_android_example.presentation.product.OnProductClickListener
 import com.leinaro.mercadolibre_android_example.presentation.product.ProductRecyclerViewAdapter
 
 
 interface OnCategoryClickListener {
     fun onShowMoreClick(categoryId: String)
+    fun onProductItemClick(productId: String)
 }
 
 /**
@@ -37,9 +38,15 @@ class CategoryRecyclerViewAdapter(
         holder.contentView.setOnClickListener {
             listener?.onShowMoreClick(item.id)
         }
+        val productListener = object : OnProductClickListener {
+            override fun onProductItemClick(productId: String) {
+                listener?.onProductItemClick(productId)
+            }
+        }
+
         with(holder.productList) {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ProductRecyclerViewAdapter(item.products, false)
+            adapter =
+                ProductRecyclerViewAdapter(item.products.subList(0, 6), false, productListener)
             visibility = View.VISIBLE
         }
         holder.showMore.setOnClickListener {

@@ -2,6 +2,7 @@ package com.leinaro.mercadolibre_android_example.presentation.category.handler
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinaro.mercadolibre_android_example.presentation.category.*
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
@@ -15,7 +16,21 @@ object ShowCategoryListViewHandler :
         viewModel: BaseViewModel<CategoryViewData>,
     ) {
         when (context) {
-            is CategoryFragment -> showCategoryList(context, categories)
+            is CategoryFragment -> {
+                showCategoryList(context, categories)
+                showLoading(context, isLoading)
+            }
+        }
+    }
+
+    private fun showLoading(
+        categoryFragment: CategoryFragment,
+        isLoading: Boolean,
+    ) {
+        categoryFragment.binding.progressBar.visibility = if (isLoading) {
+            View.VISIBLE
+        } else {
+            View.GONE
         }
     }
 
@@ -32,11 +47,20 @@ object ShowCategoryListViewHandler :
                     )
                     navController.navigate(action)
                 }
+
+                override fun onProductItemClick(productId: String) {
+                    val navController = categoryFragment.findNavController()
+                    val action =
+                        CategoryFragmentDirections.actionCategoryFragmentToProductDetailsFragment(
+                            productId
+                        )
+                    navController.navigate(action)
+                }
             }
         }
 
-        categoryFragment.binding.progressBar.visibility = View.GONE
         with(categoryFragment.binding.list) {
+            itemAnimator = DefaultItemAnimator()
             layoutManager = LinearLayoutManager(categoryFragment.requireContext())
             adapter = CategoryRecyclerViewAdapter(categories, listener)
             visibility = View.VISIBLE

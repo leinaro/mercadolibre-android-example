@@ -3,12 +3,13 @@ package com.leinaro.mercadolibre_android_example.domain.usecase.get_category
 import com.leinaro.mercadolibre_android_example.Result
 import com.leinaro.mercadolibre_android_example.domain.repository.CategoryRepository
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCategoriesDomainInteractor @Inject constructor(
+class GetCategoryDomainInteractor @Inject constructor(
     val repository: CategoryRepository,
-) : GetCategoriesInteractor {
-    override suspend fun execute(): Result<List<Category>> {
-        return repository.getCategories()
+) : GetCategoryInteractor {
+    override fun execute(categoryId: String): Flow<Result<Category>> {
+        return repository.getCategory(categoryId)
     }
 }

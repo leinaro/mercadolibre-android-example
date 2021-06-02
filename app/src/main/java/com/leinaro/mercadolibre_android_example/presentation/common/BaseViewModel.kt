@@ -26,7 +26,7 @@ abstract class BaseViewModel<T> : ViewModel() {
         errorViewData.value = ViewDataState(value, handler)
     }
 
-    fun showError(throwable: Throwable) {
+    open fun showError(throwable: Throwable) {
         setErrorValue(DefaultError(throwable), ShowGeneralErrorViewHandler)
     }
 }

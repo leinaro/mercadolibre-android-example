@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:name="com.leinaro.mercadolibre_android_example.ProductFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".presentation.product.ProductFragment">
+
+    <TextView
+        android:id="@+id/category_name"
+        style="@style/Widget.MaterialComponents.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textSize="24sp"
+        android:visibility="gone"
+        tools:text="Category" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:indeterminateTint="@color/design_default_color_primary" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#f6f6f6"
+        android:indeterminateTint="@color/design_default_color_primary"
+        android:padding="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_height="wrap_content"
+        android:background="#f6f6f6"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:visibility="gone"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/fragment_product"
+        tools:listitem="@layout/fragment_product_large"
         tools:visibility="visible" />
-</RelativeLayout>
+
+    <Button
+        android:id="@+id/show_more"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="#f6f6f6"
+        android:gravity="end"
+        android:padding="16dp"
+        android:text="Ver más"
+        android:visibility="gone" />
+</LinearLayout>

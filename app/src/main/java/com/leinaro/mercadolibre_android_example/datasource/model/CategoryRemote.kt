@@ -1,4 +1,4 @@
-package com.leinaro.mercadolibre_android_example.domain.model
+package com.leinaro.mercadolibre_android_example.datasource.model
 
 data class CategoryRemote(
     val id: String,

@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/product_thumbnail"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher" />
 
@@ -36,7 +36,9 @@
             android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/design_default_color_error"
+            android:textStyle="bold"
             tools:text="price" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

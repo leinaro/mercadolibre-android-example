@@ -1,6 +1,7 @@
 package com.leinaro.mercadolibre_android_example.presentation.common
 
 import android.content.Context
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -9,6 +10,8 @@ import com.leinaro.mercadolibre_android_example.R
 object ShowGeneralErrorViewHandler :
     ViewHandler<ErrorViewData, BaseViewModel<ErrorViewData>> {
     override fun ErrorViewData.perform(context: Any, viewModel: BaseViewModel<ErrorViewData>) {
+        Log.e("Error", error.message ?: "")
+        error.printStackTrace()
         when (context) {
             is AppCompatActivity -> showDefaultErrorMessage(context)
             is Fragment -> showDefaultErrorMessage(context.requireContext())

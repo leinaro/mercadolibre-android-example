@@ -9,7 +9,7 @@
         android:id="@+id/categoryFragment"
         android:name="com.leinaro.mercadolibre_android_example.presentation.category.CategoryFragment"
         android:label="fragment_category_list"
-        tools:layout="@layout/fragment_category_list" >
+        tools:layout="@layout/fragment_category_list">
         <action
             android:id="@+id/action_categoryFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -22,7 +22,7 @@
         android:id="@+id/productFragment"
         android:name="com.leinaro.mercadolibre_android_example.presentation.product.ProductFragment"
         android:label="fragment_product_list"
-        tools:layout="@layout/fragment_product_list" >
+        tools:layout="@layout/fragment_product_list">
         <action
             android:id="@+id/action_productFragment_to_productDetailsFragment2"
             app:destination="@id/productDetailsFragment" />
@@ -32,8 +32,12 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.leinaro.mercadolibre_android_example.presentation.ProductDetailsFragment"
+        android:name="com.leinaro.mercadolibre_android_example.presentation.productdetails.ProductDetailsFragment"
         android:label="product_details_fragment"
-        tools:layout="@layout/product_details_fragment" />
+        tools:layout="@layout/product_details_fragment">
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

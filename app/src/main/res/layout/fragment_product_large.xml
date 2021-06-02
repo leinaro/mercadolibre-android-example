@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/product_thumbnail"
             android:layout_width="100dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +31,11 @@
             android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:lines="2"
-            android:textAppearance="?attr/textAppearanceListItem"
+
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            app:layout_constraintBottom_toTopOf="@+id/product_price"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/product_thumbnail"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="product name" />
@@ -42,11 +45,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textAppearance="?attr/textAppearanceListItem"
+            android:paddingTop="16dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/design_default_color_error"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/product_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/product_name"
+            app:layout_constraintTop_toBottomOf="@+id/product_name"
             tools:text="price" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
