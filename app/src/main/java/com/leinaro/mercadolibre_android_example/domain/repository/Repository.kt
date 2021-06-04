@@ -175,6 +175,7 @@ class Repository @Inject constructor(
             try {
                 val product = mercadolibreServices.getProduct(productId)
                 updateRemoteProductToDatabase(product)
+                insertPhotosToDatabase(product)
 
                 emit(
                     Result.Success(
@@ -191,6 +192,53 @@ class Repository @Inject constructor(
                         productWithPicturesLocalMapper.map(
                             productDao.getProduct(productId)
                         )
+                    )
+                )
+            }
+        }
+    }
+
+    override suspend fun getProductsByQuery(query: String): Flow<Result<List<Product>>> {
+        return flow {
+            emit(
+                Result.Loading(
+                    ListMapperImpl(productLocalMapper)
+                        .map(
+                            productDao.getAllProducts()
+                        )
+                )
+            )
+            try {
+                if (query.isNotEmpty()) {
+                    val products = mercadolibreServices.getProductByQuery(query).results
+                    insertRemoteProductsToDatabase(products)
+
+                    emit(
+                        Result.Success(
+                            ListMapperImpl(productLocalMapper)
+                                .map(
+                                    ListMapperImpl(productRemoteMapper).map(products)
+                                )
+                        )
+                    )
+                } else {
+                    emit(
+                        Result.Success(
+                            ListMapperImpl(productLocalMapper)
+                                .map(
+                                    productDao.getAllProducts()
+                                )
+                        )
+                    )
+                }
+            } catch (exception: IOException) {
+                emit(
+                    Result.Failure(
+                        exception,
+                        ListMapperImpl(productLocalMapper)
+                            .map(
+                                productDao.getAllProducts()
+                            )
                     )
                 )
             }
@@ -214,15 +262,17 @@ class Repository @Inject constructor(
                 .apply {
                     productDao.insertProduct(this)
                 }
+        }
+    }
 
-            ListMapperImpl(picturesRemoteMapper).map(
-                product.pictures.orEmpty().map {
-                    it.productId = product.id
-                    it
-                }
-            ).apply {
-                productDao.insertPictures(this)
+    private fun insertPhotosToDatabase(product: ProductRemote) {
+        ListMapperImpl(picturesRemoteMapper).map(
+            product.pictures.orEmpty().map {
+                it.productId = product.id
+                it
             }
+        ).apply {
+            productDao.insertPictures(this)
         }
     }
 

@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.leinaro.mercadolibre_android_example.R
-import com.leinaro.mercadolibre_android_example.dummy.DummyContent.DummyItem
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import java.text.NumberFormat
 import java.util.*
@@ -18,7 +17,7 @@ interface OnProductClickListener {
 }
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem].
+ * [RecyclerView.Adapter] that can display a [Product].
  */
 class ProductRecyclerViewAdapter(
     private val values: List<Product>,

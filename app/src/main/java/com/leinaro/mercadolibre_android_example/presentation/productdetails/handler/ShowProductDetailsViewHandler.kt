@@ -1,9 +1,7 @@
 package com.leinaro.mercadolibre_android_example.presentation.productdetails.handler
 
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Product

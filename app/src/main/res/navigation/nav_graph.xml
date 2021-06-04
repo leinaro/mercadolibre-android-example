@@ -24,7 +24,7 @@
         android:label="fragment_product_list"
         tools:layout="@layout/fragment_product_list">
         <action
-            android:id="@+id/action_productFragment_to_productDetailsFragment2"
+            android:id="@+id/action_productFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
         <argument
             android:name="categoryId"
@@ -38,6 +38,14 @@
         <argument
             android:name="productId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.leinaro.mercadolibre_android_example.presentation.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
 </navigation>

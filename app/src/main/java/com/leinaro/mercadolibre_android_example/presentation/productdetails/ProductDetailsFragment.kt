@@ -2,6 +2,7 @@ package com.leinaro.mercadolibre_android_example.presentation.productdetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import com.leinaro.mercadolibre_android_example.databinding.ProductDetailsFragme
 import com.leinaro.mercadolibre_android_example.presentation.common.setObserver
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * A fragment representing a [Product].
@@ -33,10 +35,19 @@ class ProductDetailsFragment : Fragment() {
     ): View {
         _binding = ProductDetailsFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
-
-        //viewModel.getProduct("productId")
+        setHasOptionsMenu(true)
         return view
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        /*val searchItem: MenuItem = menu.findItem(R.id.action_search)
+        searchItem.collapseActionView()
+        searchItem.isVisible = false*/
+    }
 
 }

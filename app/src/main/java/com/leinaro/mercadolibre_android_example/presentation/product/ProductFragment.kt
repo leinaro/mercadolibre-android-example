@@ -9,10 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.leinaro.mercadolibre_android_example.databinding.FragmentProductListBinding
 import com.leinaro.mercadolibre_android_example.presentation.common.setObserver
+import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A fragment representing a list of Products.
+ * A fragment representing a list of [Product].
  */
 @AndroidEntryPoint
 class ProductFragment : Fragment() {
@@ -24,15 +25,8 @@ class ProductFragment : Fragment() {
 
     private val args: ProductFragmentArgs by navArgs()
 
-    private var columnCount = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-
         this.setObserver(viewModel)
     }
 
@@ -43,6 +37,7 @@ class ProductFragment : Fragment() {
 
         _binding = FragmentProductListBinding.inflate(inflater, container, false)
         val view = binding.root
+        setHasOptionsMenu(true)
 
         viewModel.getProductsByCategory(args.categoryId)
         return view
@@ -51,18 +46,5 @@ class ProductFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            ProductFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
     }
 }

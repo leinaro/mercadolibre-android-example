@@ -14,6 +14,8 @@ import com.leinaro.mercadolibre_android_example.domain.usecase.get_product.GetPr
 import com.leinaro.mercadolibre_android_example.domain.usecase.get_product.GetProductInteractor
 import com.leinaro.mercadolibre_android_example.domain.usecase.get_product_by_category.GetProductByCategoryDomainInteractor
 import com.leinaro.mercadolibre_android_example.domain.usecase.get_product_by_category.GetProductByCategoryInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_product_by_query.GetProductByQueryDomainInteractor
+import com.leinaro.mercadolibre_android_example.domain.usecase.get_product_by_query.GetProductByQueryInteractor
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import dagger.Binds
@@ -52,6 +54,10 @@ abstract class DomainModule {
     @Singleton
     @Binds
     abstract fun bindGetProductByCategoryInteractor(interactor: GetProductByCategoryDomainInteractor): GetProductByCategoryInteractor
+
+    @Singleton
+    @Binds
+    abstract fun bindGetProductByQueryInteractor(interactor: GetProductByQueryDomainInteractor): GetProductByQueryInteractor
     // endregion
 
     @Singleton

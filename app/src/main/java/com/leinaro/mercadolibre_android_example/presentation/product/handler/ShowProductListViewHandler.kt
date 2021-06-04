@@ -1,14 +1,12 @@
 package com.leinaro.mercadolibre_android_example.presentation.product.handler
 
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
-import com.leinaro.mercadolibre_android_example.presentation.product.ProductFragment
-import com.leinaro.mercadolibre_android_example.presentation.product.ProductRecyclerViewAdapter
-import com.leinaro.mercadolibre_android_example.presentation.product.ProductViewData
-import com.leinaro.mercadolibre_android_example.presentation.product.ShowProductList
+import com.leinaro.mercadolibre_android_example.presentation.product.*
 
 object ShowProductListViewHandler :
     ViewHandler<ShowProductList, BaseViewModel<ProductViewData>> {
@@ -21,9 +19,20 @@ object ShowProductListViewHandler :
     private fun showProductList(productFragment: ProductFragment, products: List<Product>) {
         productFragment.binding.progressBar.visibility = View.GONE
 
+        val productListener = object : OnProductClickListener {
+            override fun onProductItemClick(productId: String) {
+                val navController = productFragment.findNavController()
+                val action =
+                    ProductFragmentDirections.actionProductFragmentToProductDetailsFragment(
+                        productId
+                    )
+                navController.navigate(action)
+            }
+        }
+
         with(productFragment.binding.list) {
             layoutManager = LinearLayoutManager(productFragment.requireContext())
-            adapter = ProductRecyclerViewAdapter(products)
+            adapter = ProductRecyclerViewAdapter(products, true, productListener)
             visibility = View.VISIBLE
         }
     }

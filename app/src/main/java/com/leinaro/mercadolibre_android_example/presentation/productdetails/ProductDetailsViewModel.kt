@@ -1,5 +1,6 @@
 package com.leinaro.mercadolibre_android_example.presentation.productdetails
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -31,7 +32,9 @@ class ProductDetailsViewModel @Inject constructor(
                 .asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)
                 .observeForever { result ->
                     when (result) {
-                        is Result.Success -> showProductDetails(result.value, false)
+                        is Result.Success -> {
+                            showProductDetails(result.value, false)
+                        }
                         is Result.Loading -> showProductDetails(result.value, true)
                         is Result.Failure -> showError(result.throwable)
                     }

@@ -1,4 +1,4 @@
-package com.leinaro.mercadolibre_android_example.di
+package com.leinaro.mercadolibre_android_example.domain.di
 
 import com.leinaro.mercadolibre_android_example.datasource.local.DataBaseClient
 import com.leinaro.mercadolibre_android_example.datasource.model.*

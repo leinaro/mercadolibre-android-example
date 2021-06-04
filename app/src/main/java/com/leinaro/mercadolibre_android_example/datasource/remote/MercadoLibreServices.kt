@@ -20,7 +20,7 @@ interface MercadoLibreServices {
 
     @GET("items/{productId}/description")
     suspend fun getProductDescription(
-        @Query("productId") productId: String,
+        @Path("productId") productId: String,
     ): ProductRemote
 
 
@@ -30,7 +30,8 @@ interface MercadoLibreServices {
         @Query("limit") limit: Int? = null,
     ): SearchQueryResponse
 
-//    https://api.mercadolibre.com/items/MCO544179369/description
-//    https://api.mercadolibre.com/items/MCO544179369
-
+    @GET("sites/MCO/search")
+    suspend fun getProductByQuery(
+        @Query("q") q: String,
+    ): SearchQueryResponse
 }
