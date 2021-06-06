@@ -1,4 +1,4 @@
-package com.leinaro.mercadolibre_android_example.presentation.product
+package com.leinaro.mercadolibre_android_example.presentation.product.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +11,6 @@ import com.leinaro.mercadolibre_android_example.R
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import java.text.NumberFormat
 import java.util.*
-
-interface OnProductClickListener {
-    fun onProductItemClick(productId: String)
-}
 
 /**
  * [RecyclerView.Adapter] that can display a [Product].

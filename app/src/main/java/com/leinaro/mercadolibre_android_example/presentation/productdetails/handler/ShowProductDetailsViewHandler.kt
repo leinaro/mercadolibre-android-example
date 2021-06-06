@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
-import com.leinaro.mercadolibre_android_example.presentation.productdetails.PicturesAdapter
+import com.leinaro.mercadolibre_android_example.presentation.productdetails.adapter.PicturesAdapter
 import com.leinaro.mercadolibre_android_example.presentation.productdetails.ProductDetailsFragment
 import com.leinaro.mercadolibre_android_example.presentation.productdetails.ProductDetailsViewData
 import com.leinaro.mercadolibre_android_example.presentation.productdetails.ShowProductDetails

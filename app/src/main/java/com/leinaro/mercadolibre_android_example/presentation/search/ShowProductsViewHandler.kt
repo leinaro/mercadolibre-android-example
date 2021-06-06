@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
-import com.leinaro.mercadolibre_android_example.presentation.product.OnProductClickListener
-import com.leinaro.mercadolibre_android_example.presentation.product.ProductRecyclerViewAdapter
+import com.leinaro.mercadolibre_android_example.presentation.product.adapter.OnProductClickListener
+import com.leinaro.mercadolibre_android_example.presentation.product.adapter.ProductRecyclerViewAdapter
 
 object ShowProductsViewHandler : ViewHandler<ShowProductSearch, BaseViewModel<SearchViewData>> {
     override fun ShowProductSearch.perform(
@@ -34,10 +34,15 @@ object ShowProductsViewHandler : ViewHandler<ShowProductSearch, BaseViewModel<Se
             }
         }
 
-        with(searchFragment.binding.list) {
-            layoutManager = LinearLayoutManager(searchFragment.requireContext())
-            adapter = ProductRecyclerViewAdapter(products, true, productListener)
-            visibility = View.VISIBLE
+        if (products.isEmpty()) {
+            searchFragment.binding.emptyListMessage.visibility = View.VISIBLE
+        } else {
+            searchFragment.binding.emptyListMessage.visibility = View.GONE
+            with(searchFragment.binding.list) {
+                layoutManager = LinearLayoutManager(searchFragment.requireContext())
+                adapter = ProductRecyclerViewAdapter(products, true, productListener)
+                visibility = View.VISIBLE
+            }
         }
     }
 

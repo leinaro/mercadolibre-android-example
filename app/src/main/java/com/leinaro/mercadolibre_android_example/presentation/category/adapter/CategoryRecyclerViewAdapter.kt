@@ -1,4 +1,4 @@
-package com.leinaro.mercadolibre_android_example.presentation.category
+package com.leinaro.mercadolibre_android_example.presentation.category.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leinaro.mercadolibre_android_example.R
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
-import com.leinaro.mercadolibre_android_example.presentation.product.OnProductClickListener
-import com.leinaro.mercadolibre_android_example.presentation.product.ProductRecyclerViewAdapter
+import com.leinaro.mercadolibre_android_example.presentation.product.adapter.OnProductClickListener
+import com.leinaro.mercadolibre_android_example.presentation.product.adapter.ProductRecyclerViewAdapter
 
-
-interface OnCategoryClickListener {
-    fun onShowMoreClick(categoryId: String)
-    fun onProductItemClick(productId: String)
-}
 
 /**
  * [RecyclerView.Adapter] that can display a [Category] and its [Product].

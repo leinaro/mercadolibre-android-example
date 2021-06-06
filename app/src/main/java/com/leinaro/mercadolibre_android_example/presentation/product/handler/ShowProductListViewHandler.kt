@@ -7,6 +7,8 @@ import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewMode
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import com.leinaro.mercadolibre_android_example.presentation.product.*
+import com.leinaro.mercadolibre_android_example.presentation.product.adapter.OnProductClickListener
+import com.leinaro.mercadolibre_android_example.presentation.product.adapter.ProductRecyclerViewAdapter
 
 object ShowProductListViewHandler :
     ViewHandler<ShowProductList, BaseViewModel<ProductViewData>> {

@@ -3,4 +3,7 @@
     <string name="ok">OK</string>
     <string name="default_error_message">Algo ha pasado! Por favor verifica tu conexión a Internet y vuelve a intentarlo.</string>
     <string name="search">buscar</string>
+    <string name="no_results">No se encontraron resultados</string>
+    <string name="working_with_no_network">Trabajando sin conexión. </string>
+    <string name="show_more">Ver más</string>
 </resources>

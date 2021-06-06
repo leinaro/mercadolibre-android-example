@@ -13,11 +13,6 @@ data class ProductRemote(
     var pictures: List<PicturesRemote>?,
 )
 
-data class PicturesRemote(
-    val id: String,
-    val url: String,
-    var productId: String? = null,
-)
 /*
 {
     "id": "MCO517140144",

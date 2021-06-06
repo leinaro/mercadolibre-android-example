@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:background="#f6f6f6"
+        android:background="@color/gray_background"
         android:indeterminateTint="@color/design_default_color_primary"
         android:padding="8dp" />
 

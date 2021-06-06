@@ -5,6 +5,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leinaro.mercadolibre_android_example.presentation.category.*
+import com.leinaro.mercadolibre_android_example.presentation.category.adapter.CategoryRecyclerViewAdapter
+import com.leinaro.mercadolibre_android_example.presentation.category.adapter.OnCategoryClickListener
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Category

@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.leinaro.mercadolibre_android_example.R
 import com.leinaro.mercadolibre_android_example.databinding.ActivityMainBinding
+import com.leinaro.mercadolibre_android_example.presentation.common.addNoConnectionBarMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        addNoConnectionBarMessage(binding.mainContainer)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -32,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         return when (item.itemId) {
             android.R.id.home -> {
                 navController.popBackStack()

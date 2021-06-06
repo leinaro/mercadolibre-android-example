@@ -32,7 +32,7 @@
             tools:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#f6f6f6"
+            android:background="@color/gray_background"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
             tools:context=".presentation.category.CategoryFragment"
@@ -45,9 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:background="#f6f6f6"
+        android:background="@color/gray_background"
         android:gravity="end"
         android:padding="16dp"
-        android:text="Ver más" />
+        android:text="@string/show_more" />
 
 </LinearLayout>

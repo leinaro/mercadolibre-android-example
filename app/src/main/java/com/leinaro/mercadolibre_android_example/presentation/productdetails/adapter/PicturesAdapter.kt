@@ -1,4 +1,4 @@
-package com.leinaro.mercadolibre_android_example.presentation.productdetails
+package com.leinaro.mercadolibre_android_example.presentation.productdetails.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
