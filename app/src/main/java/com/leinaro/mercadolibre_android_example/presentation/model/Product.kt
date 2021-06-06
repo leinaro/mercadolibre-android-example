@@ -6,4 +6,5 @@ class Product(
     val price: String?,
     val image: String,
     val pictures: List<String>?,
+    var description: String?,
 )

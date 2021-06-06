@@ -13,7 +13,8 @@ class ProductWithPicturesMapper @Inject constructor() :
             name = input.product.title,
             price = input.product.price,
             image = input.product.thumbnail,
-            pictures = input.pictures.map { it.url }
+            pictures = input.pictures.map { it.url },
+            description = "",
         )
     }
 

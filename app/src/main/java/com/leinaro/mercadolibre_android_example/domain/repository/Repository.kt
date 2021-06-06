@@ -174,14 +174,18 @@ class Repository @Inject constructor(
             )
             try {
                 val product = mercadolibreServices.getProduct(productId)
+                val description = mercadolibreServices.getProductDescription(productId)
+
                 updateRemoteProductToDatabase(product)
                 insertPhotosToDatabase(product)
 
+                val completeProduct = productWithPicturesLocalMapper.map(
+                    productDao.getProduct(productId)
+                )
+                completeProduct.description = description.plain_text
                 emit(
                     Result.Success(
-                        productWithPicturesLocalMapper.map(
-                            productDao.getProduct(productId)
-                        )
+                        completeProduct
                     )
                 )
 

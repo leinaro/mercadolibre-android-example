@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.common.ViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
-import com.leinaro.mercadolibre_android_example.presentation.productdetails.adapter.PicturesAdapter
 import com.leinaro.mercadolibre_android_example.presentation.productdetails.ProductDetailsFragment
 import com.leinaro.mercadolibre_android_example.presentation.productdetails.ProductDetailsViewData
 import com.leinaro.mercadolibre_android_example.presentation.productdetails.ShowProductDetails
+import com.leinaro.mercadolibre_android_example.presentation.productdetails.adapter.PicturesAdapter
 import java.text.NumberFormat
 import java.util.*
 
@@ -32,6 +32,8 @@ object ShowProductDetailsViewHandler :
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         productDetailsFragment.binding.productName.text = product.name
+        productDetailsFragment.binding.productDescription.text = product.description
+
         val format: NumberFormat = NumberFormat.getCurrencyInstance()
         format.maximumFractionDigits = 0
         format.currency = Currency.getInstance("COP")

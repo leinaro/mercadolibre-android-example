@@ -12,7 +12,8 @@ class ProductLocalMapper @Inject constructor() : Mapper<ProductLocal, Product> {
             name = input.title,
             price = input.price,
             image = input.thumbnail,
-            pictures = listOf()
+            pictures = listOf(),
+            description = "",
         )
     }
 }

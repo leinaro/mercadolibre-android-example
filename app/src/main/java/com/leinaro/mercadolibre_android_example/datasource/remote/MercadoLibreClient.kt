@@ -16,9 +16,6 @@ private const val BASE_URL = "https://api.mercadolibre.com/"
 
 @Singleton
 class MercadoLibreClient @Inject constructor(@ApplicationContext private val context: Context) {
-    //  @Inject
-    //  lateinit var noConnectionInterceptor: NoConnectionInterceptor
-
 
     val services: MercadoLibreServices = getRetrofit().create(MercadoLibreServices::class.java)
 

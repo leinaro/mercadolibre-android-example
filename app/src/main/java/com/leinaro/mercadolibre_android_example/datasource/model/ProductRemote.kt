@@ -13,6 +13,7 @@ data class ProductRemote(
     var pictures: List<PicturesRemote>?,
 )
 
+
 /*
 {
     "id": "MCO517140144",

@@ -1,6 +1,7 @@
 package com.leinaro.mercadolibre_android_example.datasource.remote
 
 import com.leinaro.mercadolibre_android_example.datasource.model.CategoryRemote
+import com.leinaro.mercadolibre_android_example.datasource.model.DescriptionRemote
 import com.leinaro.mercadolibre_android_example.datasource.model.ProductRemote
 import com.leinaro.mercadolibre_android_example.datasource.model.SearchQueryResponse
 import retrofit2.http.GET
@@ -21,7 +22,7 @@ interface MercadoLibreServices {
     @GET("items/{productId}/description")
     suspend fun getProductDescription(
         @Path("productId") productId: String,
-    ): ProductRemote
+    ): DescriptionRemote
 
 
     @GET("sites/MCO/search")
