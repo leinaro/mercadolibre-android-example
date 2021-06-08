@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetProductByCategoryDomainInteractor @Inject constructor(
     val repository: ProductRepository,
 ) : GetProductByCategoryInteractor {
-    override suspend fun execute(categoryId: String, limit: Int?): Flow<Result<List<Product>>> {
+    override fun execute(categoryId: String, limit: Int?): Flow<Result<List<Product>>> {
         return repository.getProductsByCategory(categoryId, limit)
     }
 }

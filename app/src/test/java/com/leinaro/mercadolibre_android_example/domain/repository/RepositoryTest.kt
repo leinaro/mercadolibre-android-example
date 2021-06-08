@@ -1,6 +1,7 @@
 package com.leinaro.mercadolibre_android_example.domain.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.leinaro.mercadolibre_android_example.MainCoroutineScopeRule
 import com.leinaro.mercadolibre_android_example.Result
 import com.leinaro.mercadolibre_android_example.datasource.local.AppDataBase
@@ -13,13 +14,14 @@ import com.leinaro.mercadolibre_android_example.domain.common.Mapper
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 import com.leinaro.mercadolibre_android_example.presentation.model.Product
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertTrue
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.ArgumentCaptor
+import org.mockito.Captor
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
@@ -71,6 +73,12 @@ class RepositoryTest {
 
     private lateinit var repository: Repository
 
+    @Mock
+    private lateinit var mockObserver: Observer<Result<List<Category>>>
+
+    @Captor
+    private lateinit var captor: ArgumentCaptor<Result<List<Category>>>
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -91,54 +99,4 @@ class RepositoryTest {
         )
     }
 
-    @Test
-    fun `should return a Flow with a list of categories when fetching categories successfully`() {
-        runBlocking {
-            // given
-            val categoryWithProducts = CategoryWithProducts(
-                category = CategoryLocal("1", "category"),
-                products = listOf()
-            )
-
-            val categoryRemote = CategoryRemote(
-                id = "1",
-                name = "category"
-            )
-
-            val categoryLocal = CategoryLocal(
-                categoryId = "1",
-                name = "category"
-            )
-
-            val category = Category("1", "category", listOf())
-
-            val categoryRemoteList = listOf(categoryRemote)
-
-            `when`(categoryDao.getCategoryWithProducts()).thenReturn(listOf())
-            `when`(categoryWithProductsLocalMapper.map(categoryWithProducts)).thenReturn(category)
-
-            `when`(mercadolibreServices.getCategories()).thenReturn(categoryRemoteList)
-            `when`(categoryRemoteMapper.map(categoryRemote)).thenReturn(categoryLocal)
-            //   doNothing().`when`(categoryDao.insertAllCategories(listOf(categoryLocal)))
-
-            // when
-
-            val actual = mutableListOf<Result<List<Category>>>()
-
-            repository.getCategories()
-                .take(3).collect {
-                    actual.add(it)
-                }
-
-            assertTrue(actual[0] is Result.Loading)
-            assertTrue(actual[1] is Result.Loading)
-            assertTrue(actual[2] is Result.Success)
-            //then
-
-            //   assertTrue(firstItem is Result.Loading) // Using AssertJ
-
-            // Mockito.verify(categoryDao, Mockito.times(3)).getCategoryWithProducts()
-            // Mockito.verify(mercadolibreServices, Mockito.times(1)).getCategories()
-        }
-    }
 }

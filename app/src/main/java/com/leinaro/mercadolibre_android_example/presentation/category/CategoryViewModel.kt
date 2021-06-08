@@ -1,15 +1,15 @@
 package com.leinaro.mercadolibre_android_example.presentation.category
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.leinaro.mercadolibre_android_example.Result
 import com.leinaro.mercadolibre_android_example.domain.usecase.get_all_categories.GetCategoriesInteractor
+import com.leinaro.mercadolibre_android_example.presentation.category.handler.CategoryViewData
+import com.leinaro.mercadolibre_android_example.presentation.category.handler.ShowCategoryList
 import com.leinaro.mercadolibre_android_example.presentation.category.handler.ShowCategoryListViewHandler
 import com.leinaro.mercadolibre_android_example.presentation.common.BaseViewModel
 import com.leinaro.mercadolibre_android_example.presentation.model.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,7 +28,6 @@ class CategoryViewModel @Inject constructor(
         }
         viewModelScope.launch {
             getCategoriesInteractor.execute()
-                .asLiveData(Dispatchers.IO)
                 .observeForever { result ->
                     when (result) {
                         is Result.Success -> showCategoryList(result.value, false)

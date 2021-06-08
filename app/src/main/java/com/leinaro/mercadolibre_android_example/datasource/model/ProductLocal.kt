@@ -13,10 +13,3 @@ data class ProductLocal(
     @ColumnInfo(name = "product_thumbnail") val thumbnail: String,
 )
 
-/*
-@Entity(primaryKeys = ["categoryId", "productId"])
-data class CategoryProductCrossRef(
-    val productId: String,
-    val categoryId: String,
-)*/
-

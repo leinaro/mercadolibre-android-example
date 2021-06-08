@@ -119,7 +119,7 @@ class Repository @Inject constructor(
         }
     }
 
-    override suspend fun getProductsByCategory(
+    override fun getProductsByCategory(
         categoryId: String,
         limit: Int?,
     ): Flow<Result<List<Product>>> {
@@ -163,7 +163,7 @@ class Repository @Inject constructor(
         }
     }
 
-    override suspend fun getProduct(productId: String): Flow<Result<Product>> {
+    override fun getProduct(productId: String): Flow<Result<Product>> {
         return flow {
             emit(
                 Result.Loading(
@@ -202,7 +202,7 @@ class Repository @Inject constructor(
         }
     }
 
-    override suspend fun getProductsByQuery(query: String): Flow<Result<List<Product>>> {
+    override fun getProductsByQuery(query: String): Flow<Result<List<Product>>> {
         return flow {
             emit(
                 Result.Loading(
